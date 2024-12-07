@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Case {
+  id        String   @id @map("_id") 
+  caseId   String
+  user      String
+  moderator String
+  action    Action
+  reason    String
+  createdAt DateTime @default(now())
+}
+
+enum Action {
+  Ban
+  Kick
+  Mute
+  Warn
+  Unban
+  Unmute
+}
